@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset="UTF-8">
+	<head>
+		<title>Template Ela</title>
+		<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<style type="text/css">
+			html {
+				font-family:Georgia;
+				font-size:13px;
+				margin-left:50px;
+			}
+
+			#div-options {
+				float:left;
+				margin-right:50px;
+			}
+
+			#div-output {
+				float:left;
+				width:500px;
+			}
+
+			.form-label {
+				width:111px;
+				float:left;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 align="center">Bestellbestätigung Ela</h1>
+		<div id="div-options">
+			<h2>Sprache</h2>
+			<div class= "form-group">
+				<div class= "form-label">
+					<label for="language">Sprache</label>
+				</div>
+				<div class="form-input">
+					<input type="radio" name="language" checked="checked" value="Deutsch"/>Deutsch
+					<input type="radio" name="language" value="Englisch"/>Englisch
+				</div>
+			</div>
+			<h2>Allgemeine Informationen</h2>
+				<div class="form-group">
+					<div class="form-label">
+						<label for="salutation">Anrede</label>
+					</div>
+					<div class="form-input">
+						<input type="radio" name="salutation" checked="checked" value="Frau" />Frau
+						<input type="radio" name="salutation" value="Herr" />Herr 
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="form-label">
+						<label for="name">Name</label>
+					</div>
+					<div class="form-input">
+						<input name="name" type="text" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="form-label">
+						<label for="client">Kunde</label>
+					</div>
+					<div class="form-input">
+						<input name="client" type="text" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="form-label">
+						<label for="widgetURL">Widget URL</label>
+					</div>
+					<div class="form-input">
+						<input name="widgetURL" type="text" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="form-label">
+						<label for="APIkey">API Key</label>
+					</div>
+					<div class="form-input">
+						<input name="APIkey" type="text" />
+					</div>
+				</div>
+				<div class="form-group">
+						<div class="form-label">
+							<label for="scriptURL">Script URL</label>
+						</div>
+						<div class="form-input">
+							<input name="scriptURL" type="text" />
+						</div>
+					</div>	
+				<div class="form-group">
+					<div class="form-label">
+						<label for="ending">Verabschiedung</label>
+					</div>
+					<div class="form-input">
+						<input name="ending" type="text" />
+					</div>
+				</div>
+				<br></br>
+			<button class="btnSubmit">E-Mail erstellen</button>
+		</div>
+		<div id="div-output" class="mailoutput"></div>
+
+		<script type="text/javascript" language="javascript">
+		
+			$(".btnSubmit").click(function(){
+				var emailaddress = "<a href= 'mailto:support@raisenow.com'>support@raisenow.com</a>";
+				var language = $("[name=language]:checked").val();
+				
+				if(language == "Deutsch"){
+					var mailD = "Guten Tag {{SALUTATION}} {{NAME}}<br/><br/>Damit wir das Ela Widget zusammen mit dem E-Payment aufschalten können, müssen die Textbausteine und einige Konfigurationen angepasst werden. <br/><br/>Wir haben die Vorlagen mit den Textbausteinen vorbereitet. Eine Kopie der Dateien finden Sie im Anhang.<br/>Das Widget kann unter {{WIDGETURL}} angesehen werden.<br/><br/>Details zur Integration finden Sie unter: <a href='https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site'>https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site</a><br/><br/>Der API Key lautet: {{APIKEY}}<br/>Script URL: {{SCRIPTURL}}<br/><br/>Zusätzlich benötigen wir noch folgende Informationen bzw. Datei (Logo): <br/>Bildgrösse:ca. 242x55 Pixel (Breite x Höhe)<br/> Bildtyp: PNG oder JPEG <br/><br/>Um Zahlungen erfolgreich über Ihren Server abzuwickeln, müssen Sie eine von uns zur Verfügung gestellte html-Datei auf Ihren Webserver hochladen und uns die URL (https://...) der Datei mitteilen.<br/> Standardmässig haben wir den Pfad auf /widgets/ela/ddswidget.html definiert. Zum Beispiel https://IHRE-DOMAIN.ch/widgets/ela/ddswidget.html<br/><br/>Die Datei können Sie hier runterladen:<a href= 'https://dds-widget.getunik.net/widgets/ela/ddswidget.html'>https://dds-widget.getunik.net/widgets/ela/ddswidget.html</a> <br/><br/>Die Spender haben auch die Möglichkeit eine Spendenbestätigung per E-Mail zu erhalten. Welche E-Mail Adresse (Absender und/oder Bcc) und Absendernamen dürfen wir dazu angeben?<br/><br/>Wir haben zur Zeit das Widget im Test-mode aufgeschaltet, das heisst es kann nur mit Testkreditkarten bezahlt werden. Testkreditkarten finden Sie unter: <a href='https://raisenow.com/en/docs/#datatrans-test-credit-cards'>https://raisenow.com/en/docs/#datatrans-test-credit-cards </a><br/><br/>Bei Fragen wenden Sie sich an "+ emailaddress+ ".<br/><br/>{{ENDING}}"; 
+
+					var res=mailD;
+				
+
+				}else{
+
+					var mailE = "Dear {{SALUTATION}} {{NAME}} {{WIDGETURL}} {{SCRIPTURL}} {{APIKEY}} {{ENDING}}";
+
+					var res=mailE;
+				}
+
+				$("input[type=radio]:checked").each(function() { 
+					var placeholder = $(this).attr('name').toUpperCase(); 
+					res = res.replace("{{" + placeholder + "}}", $(this).val());
+				});
+
+				$("input").each(function() { 
+					var placeholder = $(this).attr('name').toUpperCase(); 
+					res = res.replace("{{" + placeholder + "}}", $(this).val());
+				});
+
+				$(".mailoutput").html("<h2>E-Mail</h2>" + res);
+			});
+		</script>
+	</body>
+</html>
+
+
+
+				
+				
+
+				

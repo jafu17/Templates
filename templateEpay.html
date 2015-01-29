@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+	<head>
+		<title>Template E-Payment Mailbest&auml;tigung</title>
+		<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<style type="text/css">
+			html {
+				font-family:Georgia;
+				font-size:13px;
+				margin-left:50px;
+			}
+
+			#div-options {
+				float:left;
+				margin-right:50px;
+			}
+
+			#div-output {
+				float:left;
+				width:500px;
+			}
+
+			.form-label {
+				width:111px;
+				float:left;
+			}
+
+			.widgetinfos {
+				margin-left:20px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 align="center">Maibestätigung E-Payment</h1>
+		<div id="div-options">
+			<h2>Sprache</h2>
+			<div class= "form-group">
+				<div class= "form-label">
+					<label for="language">Sprache</label>
+				</div>
+				<div class="form-input">
+					<input type="radio" name="language" checked="checked" value="Deutsch"/>Deutsch
+					<input type="radio" name="language" value="Englisch"/>Englisch
+				</div>
+			</div>
+			<h2>Allgemeine Informationen</h2>
+			<div class="form-group">
+				<div class="form-label">
+					<label for="salutation">Anrede</label>
+				</div>
+				<div class="form-input">
+					<input type="radio" name="salutation" checked="checked" value="Frau" />Frau
+					<input type="radio" name="salutation" value="Herr" />Herr 
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">
+					<label for="name">Name</label>
+				</div>
+				<div class="form-input">
+					<input name="name" type="text" />
+				</div>
+			</div>
+			<div class="form-group">
+					<div class="form-label">
+						<label for="ending">Verabschiedung</label>
+					</div>
+					<div class="form-input">
+						<input name="ending" type="text" />
+					</div>
+			</div>	
+
+			<h2>Zahlungsmittel</h2>
+				<div class="form-input">
+					<input id= "checkboxCredit" type="checkbox" name="creditcard" /> Kreditkarte
+				</div>
+				<div class="form-input">
+					<input id= "checkboxPost" type="checkbox" name="postFinance" /> PostFinance
+				</div>
+				<div class="form-input">
+					<input id= "checkboxPsp" type="checkbox" name="psp" /> Payment Service Provider (PSP)
+				</div>
+				<div class="form-input">
+					<input id= "checkboxPaypal" type="checkbox" name="paypal" /> PayPal
+				</div>
+				<div class="form-input">
+					<input id= "checkboxEzs" type="checkbox" name="ezs" /> Einzahlungsschein 
+				</div>
+				<div class="form-input">
+					<input id= "checkboxImpl" type="checkbox" name="implementation" /> Implementierung
+				</div>
+			
+			<h2>Widgets</h2>
+				<div class="form-input">
+					<input type="checkbox" name="widget" value="servino" id= "mailservino"/> Servino
+						<div class="widgetinfos" id= "servino">
+							
+							<div class="form-label">
+								<label for="widgetURL">Widget URL</label>
+							</div>
+							<div class="form-input">
+								<input name="widgetURL" type="text" />
+							</div>
+							
+							<div class="form-label">
+								<label for="APIkey">API Key</label>
+							</div>
+							<div class="form-input">
+								<input name="APIkey" type="text" />
+							</div>
+							
+							<div class="form-label">
+								<label for="scriptURL">Script URL</label>
+							</div>
+								<div class="form-input">
+									<input name="scriptURL" type="text" />
+								</div>
+						</div>
+					</div>
+
+				<div class="form-input">
+					<input type="checkbox" name="widget" value="ela" id="mailela"/> Ela
+						<div class="widgetinfos" id= "ela">
+							
+							<div class="form-label">
+								<label for="widgetURL">Widget URL</label>
+							</div>
+							<div class="form-input">
+								<input name="widgetURL" type="text" />
+							</div>
+							
+							<div class="form-label">
+								<label for="APIkey">API Key</label>
+							</div>
+							<div class="form-input">
+								<input name="APIkey" type="text" />
+							</div>
+							
+							<div class="form-label">
+								<label for="scriptURL">Script URL</label>
+							</div>
+								<div class="form-input">
+									<input name="scriptURL" type="text" />
+								</div>
+						</div>
+				</div>
+				<div class="form-input">
+					<input type="checkbox" name="widget"  value="lema" id="maillema"/> Lema
+						<div class="widgetinfos" id= "lema">
+							
+							<div class="form-label">
+								<label for="widgetURL">Widget URL</label>
+							</div>
+							<div class="form-input">
+								<input name="widgetURL" type="text" />
+							</div>
+							
+							<div class="form-label">
+								<label for="APIkey">API Key</label>
+							</div>
+							<div class="form-input">
+								<input name="APIkey" type="text" />
+							</div>
+							
+							<div class="form-label">
+								<label for="scriptURL">Script URL</label>
+							</div>
+								<div class="form-input">
+									<input name="scriptURL" type="text" />
+								</div>
+						</div>
+				</div>
+
+				<div class="form-input">
+					<input type="checkbox" name="widget" value="bre" id="mailbre"/> Bre
+						<div class="widgetinfos" id= "bre" >
+							
+								<div class="form-label">
+								<label for="widgetURL">Widget URL</label>
+							</div>
+							<div class="form-input">
+								<input name="widgetURL" type="text" />
+							</div>
+							
+							<div class="form-label">
+								<label for="APIkey">API Key</label>
+							</div>
+							<div class="form-input">
+								<input name="APIkey" type="text" />
+							</div>
+							
+							<div class="form-label">
+								<label for="scriptURL">Script URL</label>
+							</div>
+								<div class="form-input">
+									<input name="scriptURL" type="text" />
+								</div>
+							</dvi>
+				</div> 
+
+			<br/><br/>
+
+	       	<button class="btnSubmit">E-Mail erstellen</button>
+
+		</div>
+
+		<div id="div-output" class="mailoutput"> </div>
+
+		<script type="text/javascript" language="javascript">
+
+		$(document).ready(function(){
+				$(".widgetinfos").hide();
+				
+				$('input[name=widget]').click( function() {
+					var value = $(this).val();
+					$("#" + value).show();
+        		}); 
+			});
+			
+
+			$(".btnSubmit").click(function(){
+
+				var language= $("[name=language]:checked").val();
+				var emailaddress = "<a href= 'mailto:support@raisenow.com'>support@raisenow.com</a>";
+				var gender = "Mr.";
+				
+				var creditcardDt = "<b>Kreditkarte:</b> <br/>Sind bereits Acquiring-Verträge mit Kreditkarteninstituten für die Bezahlung mit Kreditkarten vorhanden? Falls ja, senden Sie uns bitte die Verträge als PDF zu, damit wir diese kontrollieren und gegebenenfalls erneuern können, um die aktuellen Kommissionssätze zu erhalten. Falls nein, teilen Sie uns dies mit, damit neue Verträge aufgesetzt werden können.  <br/><br/>";
+				var creditcardE = "<b>Credit Cards:</b> <br/>Are already acquiring contracts with credit card companies for payment by credit card available? If so, please send us the contracts as a PDF, so that we control this and can optionally renew the contracts. If not, let us know that we could order a new contract. <br/><br/>";
+ 
+				var postFinanceDt = "<b>PostFinance:</b> <br/>Gibt es bereits einen Vertrag für Online-Payment mit der PostFinance? Auch hier, falls vorhanden, bitte uns zur Kontrolle senden. Falls nicht, erhalten Sie bereits in der Anlage einen Acquiring Vertrag von/für PostFinance. Bitte füllen Sie diesen aus und schicken uns einen Scan zur Kontrolle. Wir würden Ihnen dann Bescheid geben und Sie können dann das Original per Post der PostFinance senden. <br/><b>Wichtig ist, dass die Unterschrift mit der bei der PostFInance hinterlegten übereinstimmt. </b> <br/><br/>";
+
+				var postFinanceE = "<b>Post Finance:</b> <br/>GIs there already a contract for online payment by PostFinance? Again, if yes, please send us by PDF. If not, you will find attached an acquiring contract from / for PostFinance. Please fill it out and send us a scan to check. We would then let you know if everything is correct and you could then send the original by post to PostFinance. <br/><b>It is important that the signature matches with the signature which is deposited by PostFinance.</b> <br/><br/>";
+
+				var pspDt = "<b>Payment Service Provider (PSP):</b> <br/>Haben Sie bereits einen PSP für Online-Payment? Wir arbeiten mit Datatrans zusammen und würden gerne auch Ihr E-Payment darüber laufen lassen.  Gibt es Ihrerseits Einwände?<br/><br/>";
+
+				var pspE = "<b>Payment Service Provider (PSP):</b> <br/>Do you already have a PSP for online payment? We work with Datatrans. Are there any objections on your part?<br/><br/>";
+
+
+				var paypalDt = "<b>PayPal:</b> <br/> Für die Anbindung Ihres PayPal Geschäftskontos an die getunik E-Payment Infrastruktur müssen Sie unserer Infrastruktur Zugriffsrechte via der technischen Schnittstelle (API) seitens PayPal erteilen. Zudem benötigen wir Ihre Händler E-Mail Adresse. <br/>Eine Anleitung, wie Sie uns diese Genehmigung geben können finden Sie in unserem Wiki:<br/> <a href='https://raisenow.com/en/docs/#page:paypal,header:integration'> https://raisenow.com/en/docs/#page:paypal,header:integration</a><br/><br/>";
+
+				var paypalE = "<b>PayPal:</b> <br/> For the connection of your PayPal business account to the getunik e-payment infrastructure, you must grant by PayPal our infrastructure access rights via the technical interface (API). We need your dealer email address.<br/>A guide on how you can give us this permission, see our Wiki:<br/> <a href='https://raisenow.com/en/docs/#page:paypal,header:integration'> https://raisenow.com/en/docs/#page:paypal,header:integration</a><br/><br/>";
+
+				var ezsDt = "<b>Einzahlungsschein als PDF:</b><br/> Es gibt folgende Möglichkeiten: Einzahlungsschein mit oder ohne Referenznummer. Welche Variante möchten Sie aufschalten? <br/>Falls mit Ref-Nr.:<br/><ul> <li>Wie werden bei Ihnen die Referenznummern generiert? </li><li>Kommen diese aus einem CRM? </li><li>Teilen Sie uns bitte mit, wie wir die Referenznummer bilden sollen bzw. wie sie audgebaut sein muss. </li> </ul> <br/>Falls das Generieren der Ref-Nr. für Sie ein Problem darstellen sollte, schlagen wir vor, den Einzahlungsschein ohne Ref-Nr. zu integrieren. <br/> Senden Sie uns bitte eine Kopie eines Einzahlungsscheines via E-Mail, damit wir die Daten in unser System übertragen können.<br/><br/> ";
+
+				var eszE = "<b>Deposit slip as a PDF:</b><br/> There are following possibilities: payment slip with or without reference. Which variant you want to intrude?  <br/>If property Ref.:<br/><ul> <li>Like reference numbers are generated to you? </li><li>Are these from a CRM?  </li><li>Please tell us how we by Ref. intended to form or how they should be.</li> </ul> If the generation of Ref. should be a problem for you, we suggest the deposit slip without Ref no. to integrate.<br/> Please send us a copy of a deposit slip via e-mail so that we can transfer the data into our system.<br/><br/> ";
+
+				var implementationDt = "<b>Implementierung:</b><br/> Wer wird den Zahlungsprozess technisch in Ihre Website implementieren? Falls nicht getunik, teilen Sie uns bitte den technischen Kontakt mit. <br/>Für weitere Informationen rund ums E-Payment steht Ihnen unser Wiki zur Verfügung: <br/> <a href='https://raisenow.com/en/docs/'> https://raisenow.com/en/docs/</a><br/><br/>";
+
+				var implementationE = "<b>Implementation:</b><br/> Who will implement the payment process in your website? If not getunik, please let us know the technical contact.<br/>For more informations around the e-payment, please contact our wiki at: <br/><a href='https://raisenow.com/en/docs/'> https://raisenow.com/en/docs/</a><br/><br/><br/><br/>";
+
+				var mailD = "Guten Tag {{SALUTATION}} {{NAME}}<br/><br/>Herzlichen Dank, dass Sie sich für unsere E-Payment Lösung entschieden haben. Ich betreue Sie und möchte gemäss Ihrer Bestellung die nötigen Vorbereitungen treffen.<br/><br/>";
+
+				var mailE = "Dear " + gender + " {{NAME}}<br/><br/>Thank you for choosing our e-payment solution. I want to make the necessary arrangements in accordance with your order.<br/><br/>";
+
+				var mailservinoD = "<br/><b>Ihr Servino Widget:</b><br/>Damit wir das Servino Widget zusammen mit dem E-Payment aufschalten können, müssen die Textbausteine und einige Konfigurationen angepasst werden. <br/><br/>Wir haben die Vorlagen mit den Textbausteinen vorbereitet. Eine Kopie der Dateien finden Sie im Anhang.<br/>Das Widget kann unter {{WIDGETURL}} angesehen werden.<br/><br/>Details zur Integration finden Sie unter: <a href= 'https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site'>https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site<a/><br/><br/>Der API Key lautet: {{APIKEY}}<br/>Script URL: {{SCRIPTURL}} <br/><br/>Zusätzlich benötigen wir noch folgende Informationen bzw. Datei (Logo): <br/>Bildgrösse:ca. 242x55 Pixel (Breite x Höhe)<br/> Bildtyp: PNG oder JPEG <br/><br/>Um Zahlungen erfolgreich über Ihren Server abzuwickeln, müssen Sie eine von uns zur Verfügung gestellte html-Datei auf Ihren Webserver hochladen und uns die URL (https://...) der Datei mitteilen.<br/> Standardmässig haben wir den Pfad auf /widgets/servino/ddswidget.html definiert. Zum Beispiel <a href='https://IHRE-DOMAIN.ch/widgets/servino/ddswidget.html'>https://IHRE-DOMAIN.ch/widgets/servino/ddswidget.html</a> <br/> <br/>Die Datei können Sie hier runterladen:<a href= 'https://dds-widget.getunik.net/widgets/servino/ddswidget.html'>https://dds-widget.getunik.net/widgets/servino/ddswidget.html</a> <br/><br/>Die Spender haben auch die Möglichkeit eine Spendenbestätigung per E-Mail zu erhalten. Welche E-Mail Adresse (Absender und/oder Bcc) und Absendernamen dürfen wir dazu angeben?<br/><br/>Wir haben zur Zeit das Widget im Test-mode aufgeschaltet, das heisst es kann nur mit Testkreditkarten bezahlt werden. Testkreditkarten finden Sie unter: <a href='https://raisenow.com/en/docs/#datatrans-test-credit-cards'> https://raisenow.com/en/docs/#datatrans-test-credit-cards </a><br/><br/>";
+
+				var mailservinoE = "<br/><b>Your Servino Widget:</b><br/>WidgetURL:{{WIDGETURL}} API Key:{{APIKEY}} ";
+
+				var mailelaD = "<b>Ihr Ela Widget:</b><br/><br/>Damit wir das ELA Widget zusammen mit dem E-Payment aufschalten können, müssen die Textbausteine und einige Konfigurationen angepasst werden. <br/>Wir haben die Vorlagen mit den Textbausteinen vorbereitet. Eine Kopie der Dateien finden Sie im Anhang.<br/>Das Widget kann unter {{WIDGETURL}} angesehen werden.<br/><br/>Details zur Integration finden Sie unter: <a href= 'https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site'>https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site<a/><br/><br/>Der API Key lautet: {{APIKEY}}<br/>Script URL: {{SCRIPTURL}} <br/><br/>Zusätzlich benötigen wir noch folgende Informationen bzw. Datei (Logo): <br/>Bildgrösse:ca. 242x55 Pixel (Breite x Höhe)<br/> Bildtyp: PNG oder JPEG <br/><br/>Um Zahlungen erfolgreich über Ihren Server abzuwickeln, müssen Sie eine von uns zur Verfügung gestellte html-Datei auf Ihren Webserver hochladen und uns die URL (https://...) der Datei mitteilen.<br/> Standardmässig haben wir den Pfad auf /widgets/ela/ddswidget.html definiert. Zum Beispiel https://IHRE-DOMAIN.ch/widgets/ela/ddswidget.html<br/><br/>Die Datei können Sie hier runterladen: https://dds-widget.getunik.net/widgets/ela/ddswidget.html <br/><br/>Die Spender haben auch die Möglichkeit eine Spendenbestätigung per E-Mail zu erhalten. Welche E-Mail Adresse (Absender und/oder Bcc) und Absendernamen dürfen wir dazu angeben?<br/><br/>Wir haben zur Zeit das Widget im Test-mode aufgeschaltet, das heisst es kann nur mit Testkreditkarten bezahlt werden. Testkreditkarten finden Sie unter: https://raisenow.com/en/docs/#datatrans-test-credit-cards<br/><br/>";
+
+				var mailelaE = "<br/><b>Your Ela Widget:</b><br/>WidgetURL:{{WIDGETURL}} API Key:{{APIKEY}}";
+
+				var maillemaD = "<br/><b>Ihr Lema Widget:</b><br/>Das Widget kann unter {{WIDGETURL}} angesehen werden.<br/><br/>Details: <a href='https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site'>https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site</a><br/><br/>  API Key : {{APIKEY}}<br/>Script URL: {{SCRIPTURL}}<br/><br/>";
+
+				var maillemaE = "<br/><b>Your Lema Widget:</b><br/>WidgetURL:{{WIDGETURL}} API Key:{{APIKEY}}";
+
+				var mailbreD = "<br/><b>Ihr Bre Widget:</b><br/>Das Widget kann unter {{WIDGETURL}} angesehen werden.<br/><br/>Details zur Integration finden Sie unter: <a href='https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site'>https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site</a><br/><br/> Der API Key lautet: {{APIKEY}}<br/>Script URL: {{SCRIPTURL}}<br/><br/>";
+
+				var mailbreE = "<br/><b>Your Bre Widget:</b><br/>Your Widget URL is {{WIDGETURL}}.<br/><br/>Details: <a href='https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site'>https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site</a><br/><br/>  API Key: {{APIKEY}}<br/>Script URL: {{SCRIPTURL}}<br/><br/>";
+
+
+				if(language == "Deutsch"){
+
+					var res=mailD;
+
+					if ($("#checkboxCredit").is(":checked")) {
+	    				creditcardDt 
+
+	 			 	} else {
+	 			 		creditcardDt = "" 
+	 			 	}
+					
+					if ($("#checkboxPost").is(":checked")) {
+						postFinanceDt
+
+					} else {
+						postFinanceDt = ""
+					}
+
+					if ($("#checkboxPsp").is(":checked")) {
+						pspDt 
+
+					} else {
+						pspDt = "" 
+					}
+
+					if ($("#checkboxPaypal").is(":checked")) {
+						paypalDt
+
+					} else {
+						paypalDt = "" 
+					}
+
+					if ($("#checkboxEzs").is(":checked")) {
+						ezsDt
+
+					} else {
+						ezsDt = "" 
+					}
+
+					if ($("#checkboxImpl").is(":checked")) {
+						
+						implementationDt;
+
+					} else {
+						implementationDt = "" 
+					}
+
+					if($("#mailservino").is(":checked")){
+
+						mailservinoD;
+
+					} else {
+						mailservinoD = ""
+					}
+
+					if($("#mailela").is(":checked")){
+
+						mailelaD;
+
+					} else {
+						mailelaD = ""
+					}
+
+					if($("#maillema").is(":checked")){
+
+						maillemaD;
+
+					} else {
+						maillemaD = ""
+					}
+
+					if($("#mailbre").is(":checked")){
+
+						mailbreD;
+
+					} else {
+						mailbreD = ""
+					}
+
+
+				res += creditcardDt + postFinanceDt + pspDt + paypalDt + ezsDt + implementationDt + mailservinoD + mailelaD + maillemaD + mailbreD;
+				res += "Für Fragen können Sie uns via E-Mail an "+emailaddress+" erreichen.<br/><br/>Ich wünsche Ihnen viel Erfolg bei der Mittelbeschaffung!" +$("#ending").val(); 
+
+				$(".mailoutput").html("<h2>E-Mail</h2>" + res);
+
+				//ab hier englische version!
+				} else {
+
+					var res=mailE;
+
+					if ($("#checkboxCredit").is(":checked")) {
+	    				creditcardE;
+
+	 			 	} else {
+	 			 		creditcardE = "" 
+	 			 	}
+					
+					if ($("#checkboxPost").is(":checked")) {
+						postFinanceE
+
+					} else {
+						postFinanceE = ""
+					 }
+
+					if ($("#checkboxPsp").is(":checked")) {
+						pspE
+
+					} else {
+						pspE = "" 
+					}
+
+					if ($("#checkboxPaypal").is(":checked")) {
+						paypalE
+
+					} else {
+						paypalE = ""
+					 }
+
+					if ($("#checkboxEzs").is(":checked")) {
+						eszE
+
+					} else {
+						eszE = "" 
+					}
+
+					if ($("#checkboxImpl").is(":checked")) {
+						implementationE
+
+					} else {
+						implementationE = "" 
+					}
+
+					if($("[name=salutation]:checked").val() =="Frau") {var gender = "Mrs."
+					
+					}else{
+						gender = "Mr."
+					}
+
+					
+					if($("#mailservino").is(":checked")){
+
+						mailservinoE;
+
+					} else {
+						mailservinoE = ""
+					}
+
+					if($("#mailela").is(":checked")){
+
+						mailelaE;
+
+					} else {
+						mailelaE = ""
+					}
+
+					if($("#maillema").is(":checked")){
+
+						maillemaE;
+
+					} else {
+						maillemaE = ""
+					}
+
+					if($("#mailbre").is(":checked")){
+
+						mailbreE;
+
+					} else {
+						mailbreE = ""
+					}
+
+
+					res += creditcardE + postFinanceE + pspE + paypalE + eszE + implementationE + mailservinoE + mailelaE + maillemaE + mailbreE;
+					res += "For any further questions contact us via e-mail to "+emailaddress+".<br/><br/>"+ $("#ending").val();  
+
+					$(".mailoutput").html("<h2>E-Mail</h2>" + res);
+				}
+
+				$("input[type=radio]:checked").each(function() { 
+					var placeholder = $(this).attr('name').toUpperCase(); 
+					res = res.replace("{{" + placeholder + "}}", $(this).val());
+				});
+				$("input[type=checkbox]:checked").each(function() { 
+					var placeholder = $(this).attr('name').toUpperCase(); 
+					res = res.replace("{{" + placeholder + "}}", $(this).val());
+				});
+
+				$("input").each(function() { 
+					var placeholder = $(this).attr('name').toUpperCase(); 
+					res = res.replace("{{" + placeholder + "}}", $(this).val());
+				});
+
+				$(".mailoutput").html("<h2>E-Mail</h2>" + res);
+
+				
+			});
+		</script>
+	</body>
+</html>

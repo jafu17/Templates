@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<meta charset="UTF-8">
+	<head>
+		<title>Template Bre</title>
+		<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<style type="text/css">
+			html {
+				font-family:Georgia;
+				font-size:13px;
+				margin-left:50px;
+			}
+
+			#div-options {
+				float:left;
+				margin-right:50px;
+			}
+
+			#div-output {
+				float:left;
+				width:500px;
+			}
+
+			.form-label {
+				width:111px;
+				float:left;
+			}
+		</style>
+	</head>
+	<body>
+		<h1 align="center">Bestellbestätigung Bre</h1>
+		<div id="div-options">
+			<h2>Sprache</h2>
+			<div class= "form-group">
+				<div class= "form-label">
+					<label for="language">Sprache</label>
+				</div>
+				<div class="form-input">
+					<input type="radio" name="language" checked="checked" value="Deutsch"/>Deutsch
+					<input type="radio" name="language" value="Englisch"/>Englisch
+				</div>
+			</div>
+			<h2>Allgemeine Informationen</h2>
+				<div class="form-group">
+					<div class="form-label">
+						<label for="salutation">Anrede</label>
+					</div>
+					<div class="form-input">
+						<input type="radio" name="salutation" checked="checked" value="Frau" />Frau
+						<input type="radio" name="salutation" value="Herr" />Herr
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="form-label">
+						<label for="name">Name</label>
+					</div>
+					<div class="form-input">
+						<input name="name"  type="text" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="form-label">
+						<label for="client">Kunde</label>
+					</div>
+					<div class="form-input">
+						<input name="client" type="text" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="form-label">
+						<label for="widgetURL">Widget URL</label>
+					</div>
+					<div class="form-input">
+						<input name="widgeturl" type="text" />
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="form-label">
+						<label for="APIkey">API Key</label>
+					</div>
+					<div class="form-input">
+						<input  name="apikey" type="text" />
+					</div>
+				</div>
+				<div class="form-group">
+						<div class="form-label">
+							<label for="scriptURL">Script URL</label>
+						</div>
+						<div class="form-input">
+							<input name="scripturl" type="text" />
+						</div>
+					</div>	
+				<div class="form-group">
+					<div class="form-label">
+						<label for="ending">Verabschiedung</label>
+					</div>
+					<div class="form-input">
+						<input name="ending" id="ending" type="text" />
+					</div>
+				</div>
+				<br></br>
+
+			<button class="btnSubmit">E-Mail erstellen</button>
+		</div>
+		<div id="div-output" class="mailoutput"></div>
+
+		<script type="text/javascript" language="javascript">
+		
+			$(".btnSubmit").click(function(){
+				var emailaddress = "<a href= 'mailto:support@raisenow.com'>support@raisenow.com</a>";
+				var language = $("[name=language]:checked").val();
+				
+			if(language == "Deutsch"){
+				var mailD = "Guten Tag {{SALUTATION}} {{NAME}}<br/><br/>Das Widget kann unter {{WIDGETURL}} angesehen werden.<br/><br/>Details zur Integration finden Sie unter: <a href='https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site'>https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site</a><br/><br/> Der API Key lautet: {{APIKEY}}<br/>Script URL: {{SCRIPTURL}}<br/><br/> Bei Fragen wenden Sie sich an "+ emailaddress+ ".<br/><br/>{{ENDING}}";
+				var res=mailD;
+				
+
+			}else{
+
+				var mailE = "Dear {{SALUTATION}} {{NAME}}<br/><br/>Your Widget URL is {{WIDGETURL}}.<br/><br/>Details: <a href='https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site'>https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site</a><br/><br/>  API Key: {{APIKEY}}<br/>Script URL: {{SCRIPTURL}}<br/><br/> For any further questions, contact "+ emailaddress+ ".<br/><br/>{{ENDING}}";
+				var res=mailE;	
+			}
+
+			$("input[type=radio]:checked").each(function() { 
+					var placeholder = $(this).attr('name').toUpperCase(); 
+					res = res.replace("{{" + placeholder + "}}", $(this).val());
+				});
+
+				$("input").each(function() { 
+					var placeholder = $(this).attr('name').toUpperCase(); 
+					res = res.replace("{{" + placeholder + "}}", $(this).val());
+				});
+
+				$(".mailoutput").html("<h2>E-Mail</h2>" + res);
+			});
+		</script>
+	</body>
+</html>

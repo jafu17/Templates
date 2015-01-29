@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+	<head>
+		<title>Template SMS Mailbest&auml;tigung</title>
+		<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<style type="text/css">
+			html {
+				font-family:Georgia;
+				font-size:13px;
+				margin-left:50px;
+			}
+
+			#div-options {
+				float:left;
+				margin-right:50px;
+			}
+
+			#div-output {
+				float:left;
+				width:500px;
+			}
+
+			.form-label {
+				width:111px;
+				float:left;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div-options">
+			<h2>Sprache</h2>
+			<div class= "form-group">
+				<div class= "form-label">
+					<label for="language">Sprache</label>
+				</div>
+				<div class="form-input">
+					<input type="radio" name="language" value="Deutsch" checked/>Deutsch
+					<input type="radio" name="language" value="Englisch"/>Englisch
+				</div>
+			</div>
+			<h2>Allgemeine Informationen</h2>
+			<div class="form-group">
+				<div class="form-label">
+					<label for="salutation">Anrede</label>
+				</div>
+				<div class="form-input">
+					<input type="radio" name="salutation" checked="checked" value="Frau" />Frau
+					<input type="radio" name="salutation" value="Herr" />Herr 
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">
+					<label for="name">Name</label>
+				</div>
+				<div class="form-input">
+					<input name="name" type="text" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">
+					<label for="kunde">Kunde</label>
+				</div>
+				<div class="form-input">
+					<input name="client" type="text" />
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">
+					<label for="keyword">Keyword</label>
+				</div>
+				<div class="form-input">
+					<input name="keyword" type="text"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">
+					<label for="sid">Kurznummer</label>
+				</div>
+				<div class="form-input">
+					<input name="sid" type="text" value="488" />
+				</div>
+			</div>
+			
+			<h2>SMS Spenden Produkt</h2>
+			<div class="form-group">
+				<div class="form-label">
+					<label>Keyword Betrag</label>
+				</div>
+				<div class="form-input">
+					<select id="sms-package">
+						<option value="price-fix">Fix</option>
+						<option value="price-variable">Variabel</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-label">
+					<label for="amount">Betrag</label>
+				</div>
+				<div class="form-input">
+					<input name = "amount" id="amount" type="text" />
+				</div>
+			</div>
+
+			<h2>Optionen</h2>
+			RaiseNow Manager <input id="checkboxDDTManager" type="checkbox" name="options" value="ddtmanager" checked/>
+				<div class="options-ddtmanager">
+					<label for="username">Username</label>
+	            	<input name="username" type="text"  /><br/>
+	            </div><br/>
+	        Spenden Widget <input id="checkboxWidget" type="checkbox" name="options" value="donationwidget" />
+				<div class="options options-donationwidget">
+					<div class="form-group">
+						<div class="form-label">
+							<label for="widgetURL">Widget URL</label>
+						</div>
+						<div class="form-input">
+							<input name="widgetURL" type="text" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-label">
+							<label for="APIkey">API Key</label>
+						</div>
+						<div class="form-input">
+							<input name="APIkey" type="text" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-label">
+							<label for="scriptURL">Script URL</label>
+						</div>
+							<div class="form-input">
+								<input name="scriptURL" type="text" />
+							</div>
+					</div>
+	           	</div><br/>
+	        Address Enricher <input id="checkboxAdressEnricher" type="checkbox" name="options" value="addressenricher"><br/><br/>
+
+	        <br></br>
+	     	<button class="btnSubmit">E-Mail erstellen</button>
+
+		</div>
+
+		<div id="div-output" class="mailoutput"></div>
+
+		<script type="text/javascript" language="javascript">
+
+			
+			var emailaddress = "<a href= 'mailto:support@raisenow.com'>support@raisenow.com</a>";
+			var smsMessage = $("[name=keyword]").val();
+			var amount = $("[name=amount]").val();
+			
+			var mailD = "Guten Tag {{SALUTATION}} {{NAME}}<br/><br/>Ich freue mich Ihnen mitteilen zu können, dass das SMS-Spendenkeyword für {{CLIENT}} nun aktiviert ist. Ab sofort kann {{CLIENT}} also über die Kurznummer {{SID}} SMS Spenden entgegennehmen (SMS mit '{{KEYWORD}} {{AMOUNT}}' an {{SID}}, um {{AMOUNT}} Franken zu spenden). In dieser Nachricht finden Sie nun alle relevanten Informationen rund ums SMS Spenden, inklusive der Zugangsdaten zu Spendenstatistiken.<br/><br/>";
+
+			var mailE = "Dear {{SALUTATION}} {{NAME}}<br/><br/>";
+				
+			var DdtManagerD = "**RaiseNow Manager**<br/>Um jederzeit den Überblick &uuml;ber die empfangenen Spenden zu haben, erhalten Sie Zugang zu unserem RaiseNow Manager.<br/><br/>Ihre Zugangsdaten f&uuml;r den RaiseNow Manager lauten:<br/>URL: <a href='https://manage.raisenow.com'>https://manage.raisenow.com</a><br/>Benutzername: {{USERNAME}}<br/>Passwort: Sie erhalten eine separate E-Mail mit der Aufforderung Ihr Passwort neu zu setzen.<br/><br/>Um den RaiseNow Manager zu testen empfehle ich Ihnen eine Testspende mit Ihrem Keyword zu machen. Sie können dann kontrollieren wie die Spende erfasst wird. Gross-/Kleinschreibung spielt bei den Keywords &uuml;brigens keine Rolle. Geben Sie mir doch nach einem ersten Test kurz Bescheid ob alles geklappt hat.<br/><br/>";
+
+			var DdtManagerE = " **RaiseNow Manager**<br/><br/>";
+
+			var DonationwidgetD = "**Spendenwidget zur Integration auf Ihrer Webseite**<br/>Das Widget kann unter {{WIDGETURL}} angesehen werden.<br/><br/>Details zur Integration finden Sie unter:  <a href='https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site'>https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site</a><br/><br/> Der API Key lautet: {{APIKEY}}<br/>Script URL: {{SCRIPTURL}}<br/><br/> "; 
+
+			var DonationwidgetE = " **Donation Widget**<br/><br/>";
+
+			var AddressEnricherD = "**Address-Enricher**<br/>Nach erfolgter Spende erhalten Sie automatisch ein weiteres SMS mit der Option Ihre Adresse für eine Spendenbestätigung zu hinterlegen.<br/><br/>Mit der Export-Funktion im RaiseNow Manager können Sie die Adressen abfragen. Dazu schlage ich Ihnen folgende Suchkriterien vor:<br/><ul><li>stored_keyword:\"{{KEYWORD}}\" (Suche nach Keyword)</li><li>stored_customer_raw_address:* (Suche nach Transaktionen mit gespeicherter Anschrift)</li><li>stored_keyword:\"{{KEYWORD}}\" AND stored_customer_raw_address:* (Suche nach Transaktionen mit bestimmten Keyword und gespeicherter Anschrift)</li></ul>Weitere nützliche Informationen finden Sie auch in unserem Wiki zum RaiseNow Manager, welches laufend erweitert wird: https://together.getunik.com/display/DDT/RaiseNow+Manager<br/><br/>";
+
+			var AddressEnricherE = "**Address-Enricher** <br/><br/>";
+
+			$(document).ready(function(){
+				$(".options").hide();
+				
+				$('input[name=options]').bind('click', function() {
+    	        	$('.' + 'options-' + $(this).val()).show();
+        		});
+			});
+
+			$(".btnSubmit").bind("click", function(){
+				var language = $("[name=language]:checked").val();
+
+				if(language == "Deutsch"){
+
+					var res= mailD;
+				
+
+					if ($("#sms-package option:selected").text() === "Fix" && $("#amount").val() == '') {
+						alert("Spendenbetrag angeben!");
+						return;
+					}
+					if ($("#amount").val() !== '') var amount = $("#amount").val();
+					if ($("#sms-package option:selected").text() !== "Fix") smsMessage += " " + amount;
+					if ($("#checkboxDDTManager").is(':checked')) { DdtManagerD;
+						
+					} else {
+						DdtManagerD = ""
+					}
+
+					
+					if ($("#checkboxWidget").is(":checked")) {
+						DonationwidgetD; 
+
+					} else {
+						DonationwidgetD = ""
+					}
+
+					if ($("#checkboxAdressEnricher").is(":checked")) {
+						AddressEnricherD; 
+						
+					} else {
+						AddressEnricherD = ""
+					}
+
+					res += DdtManagerD + DonationwidgetD + AddressEnricherD;
+					res += "Für Fragen können Sie uns via E-Mail an "+emailaddress+" erreichen.<br/><br/>Ich wünsche Ihnen viel Erfolg bei der Mittelbeschaffung!<br/><br/>{{ENDING}}"; 
+
+
+				//englische verison ab hier!
+			
+				}else {
+					var res = mailE;
+
+					if ($("#sms-package option:selected").text() === "Fix" && $("#amount").val() == '') {
+						alert("Spendenbetrag angeben!");
+						return;
+					}
+					if ($("#amount").val() !== '') var amount = $("#amount").val();
+					if ($("#sms-package option:selected").text() !== "Fix") smsMessage += " " + amount;
+					if ($("#checkboxDDTManager").is(':checked')) { DdtManagerE;
+						
+					} else {
+						DdtManagerE = ""
+					}
+					
+					if ($("#checkboxWidget").is(":checked")) {
+						DonationwidgetE; 
+
+					} else {
+						DonationwidgetE= ""
+					}
+
+					if ($("#checkboxAdressEnricher").is(":checked")) {
+						AddressEnricherE; 
+						
+					} else {
+						AddressEnricherE = ""
+					}
+
+					res += DdtManagerE + DonationwidgetE + AddressEnricherE;
+					res += "Für Fragen können Sie uns via E-Mail an "+emailaddress+" erreichen.<br/><br/>Ich wünsche Ihnen viel Erfolg bei der Mittelbeschaffung!<br/><br/>{{ENDING}}"; 
+
+					}
+
+				$("input[type=radio]:checked").each(function() { 
+						var placeholder = $(this).attr('name').toUpperCase(); 
+						res = res.replace("{{" + placeholder + "}}", $(this).val());
+					});
+
+				$("input").each(function() { 
+					var placeholder = $(this).attr('name').toUpperCase(); 
+					res = res.replace("{{" + placeholder + "}}", $(this).val());
+				});
+
+					$(".mailoutput").html("<h2>E-Mail</h2>" + res);
+			
+
+			});
+		</script>
+	</body>
+</html>
