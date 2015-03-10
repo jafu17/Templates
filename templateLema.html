@@ -59,15 +59,6 @@
 						<input name="name" type="text" />
 					</div>
 				</div>
-
-				<div class="form-group">
-					<div class="form-label">
-						<label for="client">Kunde</label>
-					</div>
-					<div class="form-input">
-						<input name="client" type="text" />
-					</div>
-				</div>
 				<div class="form-group">
 					<div class="form-label">
 						<label for="widgetURL">Widget URL</label>
@@ -92,14 +83,7 @@
 						<input name="scriptURL" type="text" />
 					</div>
 				</div>	
-				<div class="form-group">
-					<div class="form-label">
-						<label for="ending">Verabschiedung</label>
-					</div>
-					<div class="form-input">
-						<input name="ending" type="text" />
-					</div>
-				</div>
+				
 			<br></br>
 			<button class="btnSubmit">E-Mail erstellen</button>
 		</div>
@@ -113,13 +97,23 @@
 			var language = $("[name=language]:checked").val();
 				
 			if(language == "Deutsch"){
-				var mailD =  "Guten Tag {{SALUTATION}} {{NAME}}<br/><br/>Damit wir das Lema Widget zusammen mit dem E-Payment aufschalten können, müssen die Textbausteine und einige Konfigurationen angepasst werden. <br/><br/>Wir haben die Vorlagen mit den Textbausteinen vorbereitet. Eine Kopie der Dateien finden Sie im Anhang.<br/>Das Widget kann unter {{WIDGETURL}} angesehen werden.<br/><br/>Details zur Integration finden Sie unter: <a href='https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site'>https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site</a><br/><br/>Der API Key lautet: {{APIKEY}}<br/>Script URL: {{SCRIPTURL}} <br/><br/>Um Zahlungen erfolgreich über Ihren Server abzuwickeln, müssen Sie eine von uns zur Verfügung gestellte html-Datei auf Ihren Webserver hochladen und uns die URL (https://...) der Datei mitteilen.<br/> Standardmässig haben wir den Pfad auf /widgets/lema/ddswidget.html definiert. Zum Beispiel https://IHRE-DOMAIN.ch/widgets/lema/ddswidget.html <br/> <br/>Die Datei können Sie hier runterladen: <a href= 'https://dds-widget.getunik.net/widgets/lema/ddswidget.html'>https://dds-widget.getunik.net/widgets/lema/ddswidget.html</a><br/><br/>Die Spender haben auch die Möglichkeit eine Spendenbestätigung per E-Mail zu erhalten. Welche E-Mail Adresse (Absender und/oder Bcc) und Absendernamen dürfen wir dazu angeben?<br/><br/>Wir haben zur Zeit das Widget im Test-mode aufgeschaltet, das heisst es kann nur mit Testkreditkarten bezahlt werden. Testkreditkarten finden Sie unter: <a href='https://raisenow.com/en/docs/#datatrans-test-credit-cards'>https://raisenow.com/en/docs/#datatrans-test-credit-cards </a><br/><br/>Bei Fragen wenden Sie sich an "+ emailaddress +".<br/><br/>{{ENDING}}";
+				var mailD =  "Guten Tag {{SALUTATION}} {{NAME}}<br/><br/>Damit wir das Lema Widget zusammen mit dem E-Payment aufschalten können, müssen die Textbausteine und einige Konfigurationen angepasst werden. <br/><br/>Wir haben die Vorlagen mit den Textbausteinen vorbereitet. Eine Kopie der Dateien finden Sie im Anhang.<br/>Das Widget kann unter {{WIDGETURL}} angesehen werden.<br/><br/>Details zur Integration finden Sie unter: <a href='https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site'>https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site</a><br/><br/>Der API Key lautet: {{APIKEY}}<br/>Die Script URL lautet: {{SCRIPTURL}} <br/><br/>Um Zahlungen erfolgreich über Ihren Server abzuwickeln, müssen Sie eine von uns zur Verfügung gestellte html-Datei auf Ihren Webserver hochladen und uns die URL (https://...) der Datei mitteilen.<br/> Standardmässig haben wir den Pfad auf /widgets/lema/ddswidget.html definiert. Zum Beispiel https://IHRE-DOMAIN.ch/widgets/lema/ddswidget.html <br/> <br/>Die Datei können Sie hier runterladen: <a href= 'https://dds-widget.getunik.net/widgets/lema/ddswidget.html'>https://dds-widget.getunik.net/widgets/lema/ddswidget.html</a><br/><br/>Die Spender haben auch die Möglichkeit eine Spendenbestätigung per E-Mail zu erhalten. Welche E-Mail Adresse (Absender und/oder Bcc) und Absendernamen dürfen wir dazu angeben?<br/><br/>Wir haben zur Zeit das Widget im Test-mode aufgeschaltet, das heisst es kann nur mit Testkreditkarten bezahlt werden. Testkreditkarten finden Sie unter: <a href='https://raisenow.com/en/docs/#datatrans-test-credit-cards'>https://raisenow.com/en/docs/#datatrans-test-credit-cards </a><br/><br/>Bei Fragen wenden Sie sich an "+ emailaddress +".<br/><br/>Ich wünsche Ihnen viel Erfolg bei der Mittelbeschaffung!";
 				var res=mailD;
 					
 
 			}else{
 
-				var mailE = "Dear {{SALUTATION}} {{NAME}}<br/><br/><br/>Das Widget kann unter {{WIDGETURL}} angesehen werden.<br/><br/>Details zur Integration finden Sie unter: <a href= 'https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site'> https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site</a><br/><br/> API Key: {{APIKEY}}<br/>Script URL: {{SCRIPTURL}} <br/><br/> Standardmässig haben wir den Pfad auf /widgets/servino/ddswidget.html definiert. Zum Beispiel https://IHRE-DOMAIN.ch/widgets/servino/ddswidget.html <br/> <br/>Die Datei können Sie hier runterladen:   <a href= 'https://dds-widget.getunik.net/widgets/lema/ddswidget.html'>https://dds-widget.getunik.net/widgets/lema/ddswidget.html</a><br/><br/>Testkreditkarten: <a href='https://raisenow.com/en/docs/#datatrans-test-credit-cards'>https://raisenow.com/en/docs/#datatrans-test-credit-cards </a><br/><br/>Bei Fragen wenden Sie sich an " + emailaddress+".<br/><br/>{{ENDING}}"; 
+				var mailE = "Dear {{SALUTATION}} {{NAME}}<br/><br/><br/>Das Widget kann unter {{WIDGETURL}} angesehen werden.<br/><br/>Details zur Integration finden Sie unter: <a href= 'https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site'> https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site</a><br/><br/> API Key: {{APIKEY}}<br/>Script URL: {{SCRIPTURL}} <br/><br/> Standardmässig haben wir den Pfad auf /widgets/servino/ddswidget.html definiert. Zum Beispiel https://IHRE-DOMAIN.ch/widgets/servino/ddswidget.html <br/> <br/>Die Datei können Sie hier runterladen:   <a href= 'https://dds-widget.getunik.net/widgets/lema/ddswidget.html'>https://dds-widget.getunik.net/widgets/lema/ddswidget.html</a><br/><br/>Testkreditkarten: <a href='https://raisenow.com/en/docs/#datatrans-test-credit-cards'>https://raisenow.com/en/docs/#datatrans-test-credit-cards </a><br/><br/>Bei Fragen wenden Sie sich an " + emailaddress+".<br/><br/>I wish you good luck with your fundraising!"; 
+
+				if ($("input[name=salutation]:checked").val() == "Frau" ) {
+						$("input[name=salutation]:checked").val("Mrs.");
+				
+				}else {
+					$("input[name=salutation]:checked").val("Mr.");
+						
+				}
+
+
 				var res=mailE;	
 			}
 

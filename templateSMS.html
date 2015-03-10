@@ -2,7 +2,7 @@
 <html>
 <meta charset="UTF-8">
 	<head>
-		<title>Template SMS Mailbest&auml;tigung</title>
+		<title>Template SMS Mailbestätigung</title>
 		<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 		<style type="text/css">
 			html {
@@ -29,10 +29,10 @@
 	</head>
 	<body>
 		<div id="div-options">
-			<h2>Sprache</h2>
+			<h2>Language</h2>
 			<div class= "form-group">
 				<div class= "form-label">
-					<label for="language">Sprache</label>
+					<label for="language">Language</label>
 				</div>
 				<div class="form-input">
 					<input type="radio" name="language" value="Deutsch" checked/>Deutsch
@@ -160,7 +160,7 @@
 
 			var DdtManagerE = " **RaiseNow Manager**<br/><br/>";
 
-			var DonationwidgetD = "**Spendenwidget zur Integration auf Ihrer Webseite**<br/>Das Widget kann unter {{WIDGETURL}} angesehen werden.<br/><br/>Details zur Integration finden Sie unter:  <a href='https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site'>https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site</a><br/><br/> Der API Key lautet: {{APIKEY}}<br/>Script URL: {{SCRIPTURL}}<br/><br/> "; 
+			var DonationwidgetD = "**Spendenwidget zur Integration auf Ihrer Webseite**<br/>Das Widget kann unter {{WIDGETURL}} angesehen werden.<br/><br/>Details zur Integration finden Sie unter:  <a href='https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site'>https://raisenow.com/en/docs/#page:web-widgets,header:how-to-integrate-a-web-widget-into-your-site</a><br/><br/> Der API Key lautet: {{APIKEY}}<br/>Die Script URL lautet: {{SCRIPTURL}}<br/><br/> "; 
 
 			var DonationwidgetE = " **Donation Widget**<br/><br/>";
 
@@ -178,6 +178,7 @@
 
 			$(".btnSubmit").bind("click", function(){
 				var language = $("[name=language]:checked").val();
+				
 
 				if(language == "Deutsch"){
 
@@ -195,7 +196,6 @@
 					} else {
 						DdtManagerD = ""
 					}
-
 					
 					if ($("#checkboxWidget").is(":checked")) {
 						DonationwidgetD; 
@@ -212,8 +212,9 @@
 					}
 
 					res += DdtManagerD + DonationwidgetD + AddressEnricherD;
-					res += "Für Fragen können Sie uns via E-Mail an "+emailaddress+" erreichen.<br/><br/>Ich wünsche Ihnen viel Erfolg bei der Mittelbeschaffung!<br/><br/>{{ENDING}}"; 
+					res += "Für Fragen können Sie uns via E-Mail an "+emailaddress+" erreichen.<br/><br/>Ich wünsche Ihnen viel Erfolg bei der Mittelbeschaffung!<br/><br/>"; 
 
+					res.replace(/Ich/gi, "XXXXX");
 
 				//englische verison ab hier!
 			
@@ -224,6 +225,16 @@
 						alert("Spendenbetrag angeben!");
 						return;
 					}
+
+					if ($("input[name=salutation]:checked").val() == "Frau" ) {
+						$("input[name=salutation]:checked").val("Mrs.");
+						
+
+					}else {
+						$("input[name=salutation]:checked").val("Mr.");
+						
+					}
+
 					if ($("#amount").val() !== '') var amount = $("#amount").val();
 					if ($("#sms-package option:selected").text() !== "Fix") smsMessage += " " + amount;
 					if ($("#checkboxDDTManager").is(':checked')) { DdtManagerE;
@@ -236,30 +247,34 @@
 						DonationwidgetE; 
 
 					} else {
-						DonationwidgetE= ""
+						DonationwidgetE = " "
 					}
 
 					if ($("#checkboxAdressEnricher").is(":checked")) {
 						AddressEnricherE; 
 						
 					} else {
-						AddressEnricherE = ""
+						AddressEnricherE = " "
 					}
 
 					res += DdtManagerE + DonationwidgetE + AddressEnricherE;
-					res += "Für Fragen können Sie uns via E-Mail an "+emailaddress+" erreichen.<br/><br/>Ich wünsche Ihnen viel Erfolg bei der Mittelbeschaffung!<br/><br/>{{ENDING}}"; 
-
+					res += "For any further questions, contact us via e-mail to  "+emailaddress+".<br/><br/>I wish you good luck with your fundraising!<br/><br/>"; 
 					}
 
 				$("input[type=radio]:checked").each(function() { 
 						var placeholder = $(this).attr('name').toUpperCase(); 
 						res = res.replace("{{" + placeholder + "}}", $(this).val());
+						
 					});
 
 				$("input").each(function() { 
 					var placeholder = $(this).attr('name').toUpperCase(); 
+					res = res.replace(/\{\{client\}\}/gi, $("input[name=client]").val());
+					res = res.replace(/\{\{amount\}\}/gi, $("input[name=amount]").val());
+					res = res.replace(/\{\{sid\}\}/gi, $("input[name=sid]").val());
 					res = res.replace("{{" + placeholder + "}}", $(this).val());
 				});
+				
 
 					$(".mailoutput").html("<h2>E-Mail</h2>" + res);
 			
